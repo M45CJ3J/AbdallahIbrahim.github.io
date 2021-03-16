@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Sign Up</title>
+
+<link rel="stylesheet" href="style/registration.css">
+
+<script src="registration.js"></script>
+</head>
+<body onload="document.registration.userid.focus();">
+    <nav>
+        <ul>
+            <li><a href="home.html"> Home </a></li>
+      
+            <li><a href="final one gallery.html"> Gallery  </a></li>
+            <li><a href=" #"> Map </a></li>
+            <li><a href=" #"> Contact Us </a></li>
+            <li><a href="about_us.html"> About Us </a></li> 
+            <li><a href="validation form.html"> Signin / sign up </a></li>  
+        <!--    <div class="dropdown">
+                <button class="dropbtn">MY Chart</button>
+                <div class="dropdown-content" id="chart">
+                  <a href="#">Link 1</a>
+                </div>
+                </div> 
+            <li><a href=" #" id="username"> welcome: username </a></li> -->
+        </ul>
+        </nav>
+    <div id="regDiv">
+<h1>New user registration!</h1>
+
+<form name='registration' onSubmit="return formValidation();">
+<ul>
+<li><label for="userid">    </label></li>
+<li><input type="text" name="userid" size="50" placeholder="UserID"/></li>
+<li><label for="passid">    </label></li>
+<li><input type="password" name="passid" size="50" placeholder="Password"/></li>
+<li><label for="username">    </label></li>
+<li><input type="text" name="username" size="50" placeholder="UserName"/></li>
+<li><label for="address">    </label></li>
+<li><input type="text" name="address" size="50" placeholder="Address"/></li>
+<li><label for="email">    </label></li>
+<li><input type="text" name="email" size="50" placeholder="E_mail"/></li>
+<li><label for="email">    </label></li>
+<li><input type="tel" name="phone" size="50" placeholder="Phone number"/></li>
+<li><label for="country">    </label></li>
+<li><select name="country">
+<option selected="" value="Default">(Please select a Governator)</option>
+<option value="AF">Cairo</option>
+<option value="AL">Mansoura</option>
+<option value="DZ">Menia</option>
+<option value="AS">Asuit</option>
+<option value="AD">Aswan</option>
+</select></li>
+
+<li><label for="desc">    </label></li>
+<li><textarea name="desc" id="desc" placeholder="About (Optional)"></textarea></li>
+<li><input id="subm" type="submit" name="submit" value="Sign Up" /></li>
+</ul>
+</form>
+
+<footer>
+    <div class="footer-container">
+      <div class="left-col">
+        <img src="logo.png" alt="" class="logo">
+        <div class="social-media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="rights-text">© 2020 Created By Abdallah Nasr.</p>
+      </div>
+
+      <div class="right-col">
+        <h1>Our Newsletter</h1>
+        <div class="border"></div>
+        <p>Enter Your Email to get our news and updates.</p>
+        <form action="" class="newsletter-form">
+          <input type="email" class="txtb" id="mail"  placeholder="Enter Your Email">
+          <input type="submit" class="btn" value="submit" >
+        </form>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
