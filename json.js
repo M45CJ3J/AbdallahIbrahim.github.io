@@ -18,6 +18,7 @@ function Project(id,name, img ,discription, githuburl, productionurl ,vedio, typ
     new Project(5,'euro assist', './img/euroassist.webp' ,'this project is a website for a Travel Assistance Covering , it was made with nodejs', null, 'https://euro-assist.com/','https://www.youtube.com/embed/ruoc7HquQQQ','nodejs'),
     new Project(6,'edsx', './img/edxs.png' ,'this project is a website and dashboard for a swiss company for finanical services and used codeignitor', null, 'https://www.edsx.ch/','https://www.youtube.com/embed/TwbtJ9FsqUQ','codeignitor'),
     new Project(7,'abido', './img/abido.jpeg' ,'this project is a website for a spicy store in lebanon and dashboard  and used laravel in dashboard', null, 'https://www.abido.com/','https://www.youtube.com/embed/QqKXfES3oYQ','laravel'),
+    new Project(8,'profitic', './img/profitic.jpeg' ,'this project is a CRM to mange clinics in USA and works a SaaS and its DB is large what makes DB Quries so hard  and used  combination between php native , laravel and angular ', null, 'https://app.profiticemr.com/administrator/index.php','https://www.youtube.com/embed/GSan4uGMvAc','laravel'),
 
 
   ]
