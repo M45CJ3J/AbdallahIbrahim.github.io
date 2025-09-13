@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project details - Abdallah Ibrahim Portfolio">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="json.js"></script>
+        
+    <title>Project Details - Abdallah Ibrahim</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="./index.html" class="nav-logo" aria-label="Abdallah Ibrahim Home">
+                <span class="logo-text">Abdallah Ibrahim</span>
+            </a>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="./index.html#services" class="nav-link">Services</a>
+                <a href="./index.html#projects" class="nav-link">Projects</a>
+                <a href="./index.html#contact" class="nav-link">Contact</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Details Section -->
+    <section class="project-details">
+        <div class="container">
+            <div class="project-header">
+                <a href="./index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                <h1 id="project-name" class="project-title">Loading...</h1>
+                <div class="project-meta">
+                    <span id="project-type" class="project-type">Loading...</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-media">
+                    <div id="project-video" class="video-container">
+                        <!-- Video will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-description">
+                        <h2>Project Description</h2>
+                        <p id="project-description">Loading...</p>
+                    </div>
+
+                    <div class="project-links-section">
+                        <h2>Project Links</h2>
+                        <div class="project-links">
+                            <a id="github-link" href="#" class="project-link" style="display: none;">
+                                <i class="fab fa-github"></i>
+                                View on GitHub
+                            </a>
+                            <a id="production-link" href="#" class="project-link" style="display: none;">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Modern project details loader
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjectDetails();
+        });
+
+        function loadProjectDetails() {
+            try {
+                // Try to get data from new format first
+                const projectData = sessionStorage.getItem('projectData');
+                if (projectData) {
+                    const data = JSON.parse(projectData);
+                    displayProjectDetails(data);
+                    return;
+                }
+
+                // Fallback to old format for backward compatibility
+                const name = sessionStorage.getItem("name");
+                const description = sessionStorage.getItem("discription");
+                const githubUrl = sessionStorage.getItem("githuburl");
+                const productionUrl = sessionStorage.getItem("productionurl");
+                const video = sessionStorage.getItem("vedio");
+
+                if (name && description) {
+                    const data = {
+                        name: JSON.parse(name),
+                        description: JSON.parse(description),
+                        githubUrl: githubUrl ? JSON.parse(githubUrl) : null,
+                        productionUrl: productionUrl ? JSON.parse(productionUrl) : null,
+                        video: video ? JSON.parse(video) : null,
+                        type: 'Unknown'
+                    };
+                    displayProjectDetails(data);
+                } else {
+                    showError('Project data not found');
+                }
+            } catch (error) {
+                console.error('Error loading project details:', error);
+                showError('Error loading project details');
+            }
+        }
+
+        function displayProjectDetails(data) {
+            // Update project name
+            document.getElementById('project-name').textContent = data.name;
+            document.title = `${data.name} - Abdallah Ibrahim`;
+
+            // Update project type
+            document.getElementById('project-type').textContent = data.type || 'Web Application';
+
+            // Update description
+            document.getElementById('project-description').textContent = data.description;
+
+            // Update links
+            const githubLink = document.getElementById('github-link');
+            const productionLink = document.getElementById('production-link');
+
+            if (data.githubUrl) {
+                githubLink.href = data.githubUrl;
+                githubLink.style.display = 'inline-flex';
+            }
+
+            if (data.productionUrl) {
+                productionLink.href = data.productionUrl;
+                productionLink.style.display = 'inline-flex';
+            }
+
+            // Load video
+            if (data.video) {
+                loadVideo(data.video);
+            }
+        }
+
+        function loadVideo(videoUrl) {
+            const videoContainer = document.getElementById('project-video');
+            const iframe = document.createElement('iframe');
+            
+            iframe.src = videoUrl;
+            iframe.width = '100%';
+            iframe.height = '500';
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.style.borderRadius = 'var(--radius-lg)';
+            iframe.style.boxShadow = 'var(--shadow-lg)';
+            
+            videoContainer.appendChild(iframe);
+        }
+
+        function showError(message) {
+            document.getElementById('project-name').textContent = 'Error';
+            document.getElementById('project-description').textContent = message;
+        }
+    </script>
+</body>
+</html>
